@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Content Management Tool</title>
+  <style>
+   
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .editor {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 20px;
+      background-color: #fff;
+    }
+
+    .element {
+      margin-bottom: 10px;
+    }
+
+    .element label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .element input[type="text"],
+    .element textarea {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      resize: vertical;
+    }
+
+    .element input[type="file"] {
+      padding: 5px 0;
+    }
+
+    .element button {
+      padding: 5px 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    .preview {
+      border: 1px solid #ccc;
+      padding: 10px;
+      background-color: #fff;
+    }
+
+    .preview h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .preview .element {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+    }
+
+    .preview .element h3 {
+      margin-top: 0;
+    }
+
+    .preview .element p {
+      margin-bottom: 10px;
+    }
+
+    .preview .element img,
+    .preview .element iframe {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Content Management Tool</h1>
+
+    <div class="editor">
+      <h2>Editor</h2>
+
+      <div class="element">
+        <label for="title">Title:</label>
+        <input type="text" id="title" placeholder="Enter the title">
+      </div>
+
+      <div class="element">
+        <label for="content">Content:</label>
+        <textarea id="content" rows="5" placeholder="Enter the content"></textarea>
+      </div>
+
+      <div class="element">
+        <label for="image">Image:</label>
+        <input type="file" id="image">
+      </div>
+
+      <div class="element">
+        <label for="video">Video:</label>
+        <input type="text" id="video" placeholder="Enter the video URL">
+      </div>
+
+      <button id="submit">Add Element</button>
+    </div>
+
+    <div class="preview">
+      <h2>Preview</h2>
+      <div id="previewContainer"></div>
+    </div>
+  </div>
+
+  <script>
+    var submitButton = document.getElementById('submit');
+    var previewContainer = document.getElementById('previewContainer');
+
+    submitButton.addEventListener('click', function() {
+      var title = document.getElementById('title').value;
+      var content = document.getElementById('content').value;
+      var image = document.getElementById('image').value;
+      var video = document.getElementById('video').value;
+
+      var element = document.createElement('div');
+      element.classList.add('element');
+
+      var titleElement = document.createElement('h3');
+      titleElement.textContent = title;
+
+      var contentElement = document.createElement('p');
+      contentElement.textContent = content;
+
+      var imageElement = document.createElement('img');
+      imageElement.src = image;
+
+      var videoElement = document.createElement('iframe');
+      videoElement.src = video;
+
+      element.appendChild(titleElement);
+      element.appendChild(contentElement);
+      element.appendChild(imageElement);
+      element.appendChild(videoElement);
+
+      previewContainer.appendChild(element);
+
+      document.getElementById('title').value = '';
+      document.getElementById('content').value = '';
+      document.getElementById('image').value = '';
+      document.getElementById('video').value = '';
+    });
+  </script>
+</body>
+</html>
